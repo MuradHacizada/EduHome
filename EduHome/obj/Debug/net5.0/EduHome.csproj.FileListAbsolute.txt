@@ -164,3 +164,5 @@ C:\Users\FX505DT\Desktop\EduHome111\EduHome\obj\Debug\net5.0\Razor\Areas\Admin\V
 C:\Users\FX505DT\Desktop\EduHome111\EduHome\obj\Debug\net5.0\Razor\Areas\Admin\Views\Services\Delete.cshtml.g.cs
 C:\Users\FX505DT\Desktop\EduHome111\EduHome\obj\Debug\net5.0\Razor\Areas\Admin\Views\Sliders\Index.cshtml.g.cs
 C:\Users\FX505DT\Desktop\EduHome111\EduHome\obj\Debug\net5.0\Razor\Areas\Admin\Views\Sliders\Create.cshtml.g.cs
+C:\Users\FX505DT\Desktop\EduHome111\EduHome\obj\Debug\net5.0\Razor\Areas\Admin\Views\Sliders\Detail.cshtml.g.cs
+C:\Users\FX505DT\Desktop\EduHome111\EduHome\obj\Debug\net5.0\Razor\Areas\Admin\Views\Sliders\Update.cshtml.g.cs
