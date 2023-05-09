@@ -26,6 +26,7 @@ namespace EduHome.Areas.Admin.Controllers
             return View();
         }
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Service service)
         {
             bool isExist=await _db.Services.AnyAsync(x=>x.Name==service.Name);
@@ -38,6 +39,7 @@ namespace EduHome.Areas.Admin.Controllers
             await _db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
+       
         public async Task<IActionResult> Update(int? id)
         {
             if (id == null)
@@ -53,6 +55,7 @@ namespace EduHome.Areas.Admin.Controllers
             return View(dbService);
         }
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Update(int? id,Service service)
         {
             if (id == null)
@@ -75,6 +78,75 @@ namespace EduHome.Areas.Admin.Controllers
             dbService.Description=service.Description;
             await _db.SaveChangesAsync();
             return RedirectToAction("Index");
+        }
+      
+        public async Task<IActionResult> Detail(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            Service dbService = await _db.Services.FirstOrDefaultAsync(x => x.Id == id);
+            if (dbService == null)
+            {
+                return BadRequest();
+            }
+            return View(dbService);
+        }
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            Service dbService = await _db.Services.FirstOrDefaultAsync(x => x.Id == id);
+            if (dbService == null)
+            {
+                return BadRequest();
+            }
+            return View(dbService);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [ActionName("Delete")]
+        public async Task<IActionResult> DeletePost(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            Service dbService = await _db.Services.FirstOrDefaultAsync(x => x.Id == id);
+            if (dbService == null)
+            {
+                return BadRequest();
+            }
+            dbService.IsDeactive = true;
+            await _db.SaveChangesAsync();
+            return RedirectToAction("Index");
+        }
+        public async Task<IActionResult> Activity(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            Service dbService = await _db.Services.FirstOrDefaultAsync(x => x.Id == id);
+            if (dbService == null)
+            {
+                return BadRequest();
+            }
+            if (dbService.IsDeactive)
+            {
+                dbService.IsDeactive = false;
+            }
+            else
+            {
+                dbService.IsDeactive = true;
+            }
+            await _db.SaveChangesAsync();
+           return RedirectToAction("Index");
         }
     }
 }

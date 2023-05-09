@@ -25,7 +25,7 @@ namespace EduHome.Controllers
             HomeVM homeVM = new HomeVM
             {
                 Sliders =await _db.Sliders.ToListAsync(),
-                Services = await _db.Services.OrderByDescending(x=>x.Id).Skip(2).Take(3).ToListAsync(),
+                Services = await _db.Services.Where(x => x.IsDeactive == false).OrderByDescending(x=>x.Id).ToListAsync(),
                 About = await _db.Abouts.FirstOrDefaultAsync(),
                 Blogs =await _db.Blogs.ToListAsync(),
             };
