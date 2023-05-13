@@ -138,7 +138,7 @@ namespace EduHome.Areas.Admin.Controllers
                 }
                 string folder = Path.Combine(_env.WebRootPath, "img", "slider");
                 slider.Image = await slider.Photo.SaveFileAsync(folder);
-                string path = Path.Combine(_env.WebRootPath, dbSlider.Image);
+                string path = Path.Combine(_env.WebRootPath,folder, dbSlider.Image);
                 if (System.IO.File.Exists(path))
                 {
                     System.IO.File.Delete(path);
