@@ -81,7 +81,7 @@ namespace EduHome.Controllers
                 }
                 return View();
             }
-            await _userManager.AddToRoleAsync(newUser, Roles.Admin.ToString());
+            await _userManager.AddToRoleAsync(newUser, Roles.Member.ToString());
             await _signInManager.SignInAsync(newUser, registerVM.IsRemember);
             return RedirectToAction("Index", "Home");
         }
